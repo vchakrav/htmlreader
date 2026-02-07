@@ -35,9 +35,13 @@ pub fn extract_data(html: &str) -> Value {
         }
     }
 
-    // Extract from data-rmx web components
+    // Extract from data-rmx web components (but not those inside lists)
     let web_components = document.select("[data-rmx]");
     for node in web_components.nodes().iter() {
+        // Skip if inside a list
+        if is_inside_list(node, &document) {
+            continue;
+        }
         let sel = Selection::from(node.clone());
         if let Some((key, value)) = extract_web_component(&sel) {
             result[key] = value;
@@ -76,10 +80,22 @@ fn is_inside_list(node: &NodeRef, doc: &Document) -> bool {
         if node.id == list_node.id {
             continue;
         }
-        // Check if node is a descendant of this list
+        // Check if node is a descendant of this list (check both rmx-name and data-rmx elements)
         let list_sel = Selection::from(list_node.clone());
+
+        // Check rmx-name elements
         if list_sel
             .select("[rmx-name]")
+            .nodes()
+            .iter()
+            .any(|n| n.id == node.id)
+        {
+            return true;
+        }
+
+        // Check data-rmx elements (web components)
+        if list_sel
+            .select("[data-rmx]")
             .nodes()
             .iter()
             .any(|n| n.id == node.id)
@@ -191,6 +207,38 @@ fn extract_list(sel: &Selection) -> Value {
 /// Extracts data from a list item element.
 fn extract_list_item(node: &NodeRef, sel: &Selection) -> Value {
     let mut item = json!({});
+
+    // Check if the element itself is a web component with data-rmx
+    if let Some(_) = sel.attr("data-rmx") {
+        // Extract all attributes except data-rmx
+        for attr in sel.attrs() {
+            let attr_name = attr.name.local.to_string();
+            if attr_name != "data-rmx" {
+                item[attr_name] = Value::String(attr.value.to_string());
+            }
+        }
+
+        // Extract children of web component
+        let children = sel.children();
+        let mut child_list = Vec::new();
+        for child_node in children.nodes().iter() {
+            let child_sel = Selection::from(child_node.clone());
+            let child_attrs = child_sel.attrs();
+            if !child_attrs.is_empty() {
+                let mut child_obj = json!({});
+                for attr in child_attrs {
+                    let attr_name = attr.name.local.to_string();
+                    child_obj[attr_name] = Value::String(attr.value.to_string());
+                }
+                child_list.push(child_obj);
+            }
+        }
+        if !child_list.is_empty() {
+            item["children"] = Value::Array(child_list);
+        }
+
+        return item;
+    }
 
     // Check if the element itself has rmx-name
     if let Some(name) = sel.attr("rmx-name") {
@@ -378,6 +426,10 @@ fn render_list_element(list_sel: &Selection, items: &[Value]) {
     };
     let template_html = template_node.html().to_string();
 
+    // Check if template is a web component (has data-rmx)
+    let template_sel = Selection::from(template_node.clone());
+    let is_web_component = template_sel.attr("data-rmx").is_some();
+
     // Remove all existing children
     list_sel.children().remove();
 
@@ -385,13 +437,68 @@ fn render_list_element(list_sel: &Selection, items: &[Value]) {
     for item in items {
         let child_doc = Document::from(template_html.as_str());
 
-        // Recursively render nested lists first
-        render_lists(&child_doc, item);
+        if is_web_component {
+            // Render web component attributes directly on the root element
+            render_web_component_from_data(&child_doc, item);
+        } else {
+            // Recursively render nested lists first
+            render_lists(&child_doc, item);
 
-        // Then render simple values
-        render_values(&child_doc, item);
+            // Then render simple values
+            render_values(&child_doc, item);
+        }
 
         list_sel.append_html(child_doc.html().to_string().as_str());
+    }
+}
+
+/// Renders a web component element with data (used for web components inside lists).
+fn render_web_component_from_data(doc: &Document, data: &Value) {
+    // Find the web component (element with data-rmx)
+    let wc = doc.select("[data-rmx]");
+    if wc.nodes().is_empty() {
+        return;
+    }
+
+    let obj = match data.as_object() {
+        Some(o) => o,
+        None => return,
+    };
+
+    // Set attributes from data
+    for (key, value) in obj {
+        if key == "children" {
+            continue;
+        }
+        if let Value::String(s) = value {
+            wc.set_attr(key, s);
+        }
+    }
+
+    // Handle children if present
+    if let Some(Value::Array(children_data)) = obj.get("children") {
+        let children = wc.children();
+        let first_child = children.nodes().first();
+        if let Some(child_template) = first_child {
+            let child_html = child_template.html().to_string();
+            wc.children().remove();
+
+            for child_item in children_data {
+                if let Value::Object(child_obj) = child_item {
+                    let child_doc = Document::from(child_html.as_str());
+                    // Set attributes on the child element
+                    if let Some(root) = child_doc.select("*").nodes().first() {
+                        let root_sel = Selection::from(root.clone());
+                        for (k, v) in child_obj {
+                            if let Value::String(s) = v {
+                                root_sel.set_attr(k, s);
+                            }
+                        }
+                    }
+                    wc.append_html(child_doc.html().to_string().as_str());
+                }
+            }
+        }
     }
 }
 

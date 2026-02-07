@@ -1,0 +1,7 @@
+{
+  "cards": [
+    { "name": "Laptop", "price": "$999", "image": "laptop.png" },
+    { "name": "Phone", "price": "$699", "image": "phone.png" },
+    { "name": "Tablet", "price": "$499", "image": "tablet.png" }
+  ]
+}

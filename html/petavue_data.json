@@ -3,7 +3,7 @@
   "company_name": "Petavue",
   "logo_letter": "P",
   "hero_title_line1": "AI-Powered Analytics",
-  "hero_title_highlight": "For Your Data Lake",
+  "hero_title_highlight": "Data Lake",
   "hero_description": "Transform your data into actionable insights with Petavue's intelligent analytics platform. Connect to Snowflake, Databricks, and more.",
   "hero_cta_primary": "https://petavue.com/demo",
   "hero_cta_primary_text": "Request Demo",
@@ -62,11 +62,26 @@
     "speed": "4000",
     "autoplay": "true",
     "children": [
-      { "src": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", "alt": "Google" },
-      { "src": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg", "alt": "Amazon" },
-      { "src": "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg", "alt": "Microsoft" },
-      { "src": "https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg", "alt": "Spotify" },
-      { "src": "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg", "alt": "IBM" }
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+        "alt": "Google"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+        "alt": "Amazon"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+        "alt": "Microsoft"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg",
+        "alt": "Spotify"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+        "alt": "IBM"
+      }
     ]
   },
   "experiences_badge": "Features",
@@ -79,11 +94,6 @@
       "description": "Build beautiful, interactive dashboards with drag-and-drop simplicity."
     },
     {
-      "icon": "🔍",
-      "title": "Data Exploration",
-      "description": "Explore your data with powerful filtering, grouping, and drill-down capabilities."
-    },
-    {
       "icon": "🤖",
       "title": "AI Assistant",
       "description": "Ask questions in plain English and get instant answers from your data."
@@ -94,19 +104,9 @@
       "description": "Build and deploy machine learning models without data science expertise."
     },
     {
-      "icon": "🔔",
-      "title": "Smart Alerts",
-      "description": "Get notified when metrics change or anomalies are detected."
-    },
-    {
       "icon": "🔗",
       "title": "Data Connectors",
       "description": "Connect to Snowflake, Databricks, BigQuery, Redshift, and 50+ sources."
-    },
-    {
-      "icon": "👥",
-      "title": "Collaboration",
-      "description": "Share insights, annotate dashboards, and work together in real-time."
     },
     {
       "icon": "🔒",
