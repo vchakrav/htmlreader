@@ -1,0 +1,172 @@
+{
+  "page_title": "Salesforce - The Customer Company",
+  "company_name": "Salesforce",
+  "logo_letter": "S",
+  "hero_title_line1": "The #1 AI CRM",
+  "hero_title_highlight": "Customer 360",
+  "hero_description": "Unite your teams around your customer with AI-powered apps. Get a complete view of every customer relationship.",
+  "hero_cta_primary": "https://salesforce.com/trial",
+  "hero_cta_primary_text": "Start Free Trial",
+  "hero_cta_secondary": "https://salesforce.com/demo",
+  "hero_cta_secondary_text": "Watch Demo",
+  "nav_links": [
+    { "text": "Products" },
+    { "text": "Industries" },
+    { "text": "Customers" },
+    { "text": "Learning" },
+    { "text": "Try for Free" }
+  ],
+  "patterns_badge": "Platform Solutions",
+  "patterns_title": "Four Clouds, One Platform",
+  "patterns_description": "Everything you need to connect with your customers in a whole new way.",
+  "patterns": [
+    {
+      "number": "1",
+      "title": "Sales Cloud",
+      "description": "Sell faster, smarter, and more efficiently with AI + Data + CRM. Close more deals and accelerate growth.",
+      "features": [
+        { "text": "Lead and opportunity management" },
+        { "text": "AI-powered sales insights" },
+        { "text": "Pipeline management" },
+        { "text": "Sales forecasting" },
+        { "text": "Revenue intelligence" },
+        { "text": "Partner relationship management" }
+      ],
+      "best_for": "Sales teams looking to close more deals faster"
+    },
+    {
+      "number": "2",
+      "title": "Service Cloud",
+      "description": "Deliver personalized service at scale. Resolve cases faster with AI-powered tools.",
+      "features": [
+        { "text": "Omni-channel case management" },
+        { "text": "AI-powered chatbots" }
+      ],
+      "best_for": "Support teams delivering exceptional customer service"
+    },
+    {
+      "number": "3",
+      "title": "Marketing Cloud",
+      "description": "Create personalized journeys across every touchpoint. Drive engagement with data-driven marketing.",
+      "features": [
+        { "text": "Email and journey builder" },
+        { "text": "Social media management" },
+        { "text": "Advertising studio" },
+        { "text": "Analytics and personalization" },
+        { "text": "Customer data platform" }
+      ],
+      "best_for": "Marketers creating personalized customer journeys"
+    },
+    {
+      "number": "4",
+      "title": "Data Cloud",
+      "description": "Unify all your customer data in real-time. Power AI and automation with a single source of truth.",
+      "features": [
+        { "text": "Real-time data ingestion" },
+        { "text": "Identity resolution" },
+        { "text": "Calculated insights" }
+      ],
+      "best_for": "Data teams building unified customer profiles"
+    }
+  ],
+  "customers_title": "Trusted by 150,000+ Companies Worldwide",
+  "customer_logos": {
+    "speed": "4000",
+    "autoplay": "true",
+    "children": [
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg",
+        "alt": "Coca-Cola"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Toyota.svg",
+        "alt": "Toyota"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg",
+        "alt": "Adidas"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+        "alt": "Amazon"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg",
+        "alt": "Spotify"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+        "alt": "IBM"
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Slack_Technologies_Logo.svg",
+        "alt": "Slack"
+      }
+    ]
+  },
+  "experiences_badge": "Product Suite",
+  "experiences_title": "The Full Salesforce Platform",
+  "experiences_description": "Every app you need to deliver customer success, powered by AI.",
+  "experiences": [
+    {
+      "icon": "💼",
+      "title": "Sales Cloud",
+      "description": "Close more deals with intelligent sales automation and AI insights."
+    },
+    {
+      "icon": "🎧",
+      "title": "Service Cloud",
+      "description": "Deliver personalized support across every channel, powered by AI."
+    },
+    {
+      "icon": "📧",
+      "title": "Marketing Cloud",
+      "description": "Create personalized marketing at scale with unified customer data."
+    },
+    {
+      "icon": "🛒",
+      "title": "Commerce Cloud",
+      "description": "Unified commerce experiences across B2B and B2C."
+    },
+    {
+      "icon": "🤖",
+      "title": "Einstein AI",
+      "description": "AI that works across every Salesforce cloud and workflow."
+    },
+    {
+      "icon": "📊",
+      "title": "Tableau",
+      "description": "Visual analytics and business intelligence for everyone."
+    },
+    {
+      "icon": "🔗",
+      "title": "MuleSoft",
+      "description": "Connect any app, data, or device with API-led integration."
+    },
+    {
+      "icon": "💬",
+      "title": "Slack",
+      "description": "Bring teams together with the AI-powered work OS."
+    },
+    {
+      "icon": "⚙️",
+      "title": "Platform",
+      "description": "Build and extend apps with low-code tools and pro-code options."
+    }
+  ],
+  "cta_title": "Start Your Free Trial Today",
+  "cta_description": "Join 150,000+ companies growing with Salesforce. No credit card required.",
+  "cta_primary_link": "https://salesforce.com/trial",
+  "cta_primary_text": "Try for Free",
+  "cta_secondary_link": "https://salesforce.com/contact",
+  "cta_secondary_text": "Contact Sales",
+  "footer_brand_name": "Salesforce",
+  "footer_brand_description": "Salesforce brings companies and customers together. It's one integrated CRM platform that gives all your teams a single, shared view of every customer.",
+  "footer_links_platform": [
+    { "text": "Sales Cloud" },
+    { "text": "Service Cloud" },
+    { "text": "Marketing Cloud" },
+    { "text": "Commerce Cloud" }
+  ],
+  "footer_copyright": "© 2025 Salesforce, Inc. All rights reserved."
+}

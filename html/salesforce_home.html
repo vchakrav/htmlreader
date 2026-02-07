@@ -1,0 +1,805 @@
+<!DOCTYPE html><html lang="en"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title rmx-name="page_title" rmx-type="text">Salesforce - The Customer Company</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --primary: #00d4aa;
+                --primary-dark: #00a88a;
+                --primary-light: #5fedd8;
+                --accent: #4b9bff;
+                --accent-dark: #2e7fdb;
+                --background: #fafbfc;
+                --surface: #ffffff;
+                --text-primary: #1a1d23;
+                --text-secondary: #5a6069;
+                --border: #e4e7eb;
+                --shadow: rgba(26, 29, 35, 0.08);
+                --gradient-primary: linear-gradient(
+                    135deg,
+                    #00d4aa 0%,
+                    #4b9bff 100%
+                );
+                --gradient-accent: linear-gradient(
+                    135deg,
+                    #5fedd8 0%,
+                    #4b9bff 100%
+                );
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    sans-serif;
+                background: var(--background);
+                color: var(--text-primary);
+                line-height: 1.6;
+            }
+            h1,
+            h2,
+            h3,
+            h4 {
+                font-weight: 600;
+                letter-spacing: -0.02em;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--border);
+                z-index: 1000;
+                padding: 1rem 0;
+            }
+            nav .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .logo {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+            .logo-mark {
+                width: 36px;
+                height: 36px;
+                background: var(--gradient-primary);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: 700;
+                font-size: 1.2rem;
+            }
+            nav ul {
+                list-style: none;
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+            }
+            nav a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.95rem;
+                font-weight: 500;
+                transition: color 0.2s ease;
+            }
+            nav a:hover {
+                color: var(--primary);
+            }
+            .nav-cta {
+                padding: 0.6rem 1.25rem;
+                background: var(--gradient-primary);
+                color: white !important;
+                border-radius: 8px;
+                font-weight: 600;
+            }
+            .hero {
+                padding: 10rem 2rem 6rem;
+                background: linear-gradient(
+                    180deg,
+                    var(--surface) 0%,
+                    var(--background) 100%
+                );
+                position: relative;
+            }
+            .hero .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 2rem;
+                position: relative;
+                z-index: 1;
+            }
+            .hero-content {
+                max-width: 800px;
+            }
+            .hero h1 {
+                font-size: 4.5rem;
+                line-height: 1.1;
+                margin-bottom: 1.5rem;
+                letter-spacing: -0.03em;
+            }
+            .hero h1 .gradient-text {
+                background: var(--gradient-primary);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            .hero .lead {
+                font-size: 1.5rem;
+                line-height: 1.5;
+                color: var(--text-secondary);
+                margin-bottom: 2.5rem;
+                max-width: 700px;
+            }
+            .hero-buttons {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            .button-primary,
+            .button-secondary {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                font-weight: 600;
+                border-radius: 10px;
+                text-decoration: none;
+                transition: all 0.2s ease;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .button-primary {
+                background: var(--gradient-primary);
+                color: white;
+                border: none;
+                box-shadow: 0 4px 12px rgba(0, 212, 170, 0.25);
+            }
+            .button-secondary {
+                background: transparent;
+                color: var(--text-primary);
+                border: 2px solid var(--border);
+            }
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+            .section-header {
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+            .section-badge {
+                display: inline-block;
+                padding: 0.5rem 1rem;
+                background: linear-gradient(
+                    135deg,
+                    rgba(0, 212, 170, 0.1) 0%,
+                    rgba(75, 155, 255, 0.1) 100%
+                );
+                border-radius: 50px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: var(--primary);
+                margin-bottom: 1rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .patterns-section {
+                padding: 6rem 2rem;
+                background: var(--background);
+            }
+            .patterns-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+            .pattern-card {
+                background: var(--surface);
+                border: 2px solid var(--border);
+                border-radius: 16px;
+                padding: 2.5rem;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+            .pattern-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-6px);
+                box-shadow: 0 12px 36px var(--shadow);
+            }
+            .pattern-number {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background: var(--gradient-primary);
+                color: white;
+                border-radius: 50%;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                font-size: 1.1rem;
+            }
+            .pattern-card h3 {
+                font-size: 1.75rem;
+                margin-bottom: 1rem;
+            }
+            .pattern-card p {
+                color: var(--text-secondary);
+                margin-bottom: 1.5rem;
+                line-height: 1.7;
+            }
+            .pattern-features {
+                list-style: none;
+                margin-bottom: 1.5rem;
+            }
+            .pattern-features li {
+                padding: 0.5rem 0;
+                color: var(--text-secondary);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .pattern-features li::before {
+                content: "✓";
+                color: var(--primary);
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+            .best-for {
+                padding: 1rem;
+                background: linear-gradient(
+                    135deg,
+                    rgba(0, 212, 170, 0.05) 0%,
+                    rgba(75, 155, 255, 0.05) 100%
+                );
+                border-radius: 8px;
+                border-left: 3px solid var(--primary);
+            }
+            .best-for strong {
+                color: var(--primary-dark);
+                display: block;
+                margin-bottom: 0.25rem;
+            }
+            .experiences-section {
+                padding: 6rem 2rem;
+                background: var(--surface);
+            }
+            .experiences-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+            .experience-card {
+                background: var(--background);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 2rem;
+                transition: all 0.3s ease;
+            }
+            .experience-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px var(--shadow);
+                background: var(--surface);
+            }
+            .experience-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                display: block;
+            }
+            .experience-card h3 {
+                font-size: 1.25rem;
+                margin-bottom: 0.75rem;
+            }
+            .experience-card p {
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .cta-section {
+                padding: 6rem 2rem;
+                background: linear-gradient(
+                    135deg,
+                    var(--text-primary) 0%,
+                    #2a2d35 100%
+                );
+                color: white;
+                text-align: center;
+            }
+            .cta-section h2 {
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
+            }
+            .cta-section p {
+                font-size: 1.25rem;
+                margin-bottom: 2.5rem;
+                opacity: 0.9;
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .cta-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .cta-buttons .button-primary {
+                background: white;
+                color: var(--text-primary);
+            }
+            .cta-buttons .button-secondary {
+                border-color: white;
+                color: white;
+            }
+            footer {
+                background: var(--text-primary);
+                color: white;
+                padding: 4rem 2rem 2rem;
+            }
+            .footer-content {
+                max-width: 1400px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+                gap: 3rem;
+                margin-bottom: 3rem;
+            }
+            .footer-brand h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .footer-brand p {
+                opacity: 0.8;
+                line-height: 1.7;
+            }
+            .footer-links h4 {
+                margin-bottom: 1rem;
+                font-size: 1rem;
+            }
+            .footer-links ul {
+                list-style: none;
+            }
+            .footer-links li {
+                margin-bottom: 0.75rem;
+            }
+            .footer-links a {
+                color: white;
+                opacity: 0.7;
+                text-decoration: none;
+            }
+            .footer-bottom {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding-top: 2rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                text-align: center;
+                opacity: 0.7;
+            }
+            @media (max-width: 1024px) {
+                .patterns-grid {
+                    grid-template-columns: 1fr;
+                }
+                .experiences-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .footer-content {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+            @media (max-width: 768px) {
+                nav ul {
+                    display: none;
+                }
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+                .experiences-grid {
+                    grid-template-columns: 1fr;
+                }
+                .footer-content {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            /* Image Carousel Styles */
+            image-carousel {
+                display: block;
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+                border-radius: 12px;
+                background: var(--background);
+                padding: 2rem 0;
+            }
+            image-carousel .carousel-track {
+                display: flex;
+                align-items: center;
+                width: max-content;
+                animation: scroll var(--speed, 20s) linear infinite;
+            }
+            image-carousel .carousel-track:hover {
+                animation-play-state: paused;
+            }
+            image-carousel .logo-item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 60px;
+                min-width: 150px;
+                margin: 0 2rem;
+                padding: 0 1rem;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text-secondary);
+                opacity: 0.5;
+                transition: all 0.3s ease;
+            }
+            image-carousel .logo-item:hover {
+                opacity: 1;
+                color: var(--primary);
+            }
+            image-carousel img {
+                height: 50px;
+                width: auto;
+                margin: 0 2rem;
+                object-fit: contain;
+                filter: grayscale(100%);
+                opacity: 0.5;
+                transition: all 0.3s ease;
+            }
+            image-carousel img:hover {
+                filter: grayscale(0%);
+                opacity: 1;
+            }
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+        </style>
+        <script>
+            // Define the image-carousel custom element
+            class ImageCarousel extends HTMLElement {
+                constructor() {
+                    super();
+                    this._initialized = false;
+                }
+
+                connectedCallback() {
+                    // Wait for DOM to be ready
+                    if (document.readyState === "loading") {
+                        document.addEventListener("DOMContentLoaded", () =>
+                            this.init(),
+                        );
+                    } else {
+                        setTimeout(() => this.init(), 0);
+                    }
+                }
+
+                init() {
+                    if (this._initialized) return;
+                    this._initialized = true;
+
+                    const speed = this.getAttribute("speed") || 3000;
+                    const images = Array.from(this.querySelectorAll("img"));
+
+                    if (images.length === 0) return;
+
+                    // Create track for infinite scroll
+                    const track = document.createElement("div");
+                    track.className = "carousel-track";
+
+                    // Calculate animation duration based on number of images
+                    const duration = (images.length * parseInt(speed)) / 1000;
+                    track.style.setProperty("--speed", duration + "s");
+
+                    // Create logo items (with text fallback for failed images)
+                    const createLogoItem = (img) => {
+                        const wrapper = document.createElement("div");
+                        wrapper.className = "logo-item";
+                        const newImg = img.cloneNode(true);
+                        newImg.onerror = function () {
+                            // Replace with text on error
+                            this.parentElement.textContent = this.alt || "Logo";
+                        };
+                        wrapper.appendChild(newImg);
+                        return wrapper;
+                    };
+
+                    // Clone items twice for seamless loop
+                    images.forEach((img) =>
+                        track.appendChild(createLogoItem(img)),
+                    );
+                    images.forEach((img) =>
+                        track.appendChild(createLogoItem(img)),
+                    );
+
+                    // Clear and append track
+                    this.innerHTML = "";
+                    this.appendChild(track);
+                }
+            }
+
+            // Register the custom element
+            if (!customElements.get("image-carousel")) {
+                customElements.define("image-carousel", ImageCarousel);
+            }
+        </script>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav>
+            <div class="container">
+                <a href="/" class="logo">
+                    <div class="logo-mark" rmx-name="logo_letter" rmx-type="text">S</div>
+                    <span rmx-name="company_name" rmx-type="text">Salesforce</span>
+                </a>
+                <ul rmx-name="nav_links" rmx-type="list">
+                    
+                    
+                    
+                    
+                    
+                <li>
+                        <a rmx-name="text" rmx-type="text" href="#platform">Products</a>
+                    </li><li>
+                        <a rmx-name="text" rmx-type="text" href="#platform">Industries</a>
+                    </li><li>
+                        <a rmx-name="text" rmx-type="text" href="#platform">Customers</a>
+                    </li><li>
+                        <a rmx-name="text" rmx-type="text" href="#platform">Learning</a>
+                    </li><li>
+                        <a rmx-name="text" rmx-type="text" href="#platform">Try for Free</a>
+                    </li></ul>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>
+                        <span rmx-name="hero_title_line1" rmx-type="text">The #1 AI CRM</span><br>
+                        for the
+                        <span class="gradient-text" rmx-name="hero_title_highlight" rmx-type="text">Customer 360</span>
+                    </h1>
+                    <p class="lead" rmx-name="hero_description" rmx-type="text">Unite your teams around your customer with AI-powered apps. Get a complete view of every customer relationship.</p>
+                    <div class="hero-buttons">
+                        <a rmx-name="hero_cta_primary" rmx-type="attr:href" href="https://salesforce.com/trial" class="button-primary">
+                            <span rmx-name="hero_cta_primary_text" rmx-type="text">Start Free Trial</span>
+                            <span>→</span>
+                        </a>
+                        <a rmx-name="hero_cta_secondary" rmx-type="attr:href" href="https://salesforce.com/demo" class="button-secondary">
+                            <span rmx-name="hero_cta_secondary_text" rmx-type="text">Watch Demo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deployment Patterns Section -->
+        <section class="patterns-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge" rmx-name="patterns_badge" rmx-type="text">Platform Solutions</div>
+                    <h2 rmx-name="patterns_title" rmx-type="text">Four Clouds, One Platform</h2>
+                    <p rmx-name="patterns_description" rmx-type="text">Everything you need to connect with your customers in a whole new way.</p>
+                </div>
+                <div class="patterns-grid" rmx-name="patterns" rmx-type="list">
+                    
+
+                    
+
+                    
+                <div class="pattern-card">
+                        <div class="pattern-number" rmx-name="number" rmx-type="text">1</div>
+                        <h3 rmx-name="title" rmx-type="text">Sales Cloud</h3>
+                        <p rmx-name="description" rmx-type="text">Sell faster, smarter, and more efficiently with AI + Data + CRM. Close more deals and accelerate growth.</p>
+                        <ul class="pattern-features" rmx-name="features" rmx-type="list">
+                            
+                            
+                            
+                        <li rmx-name="text" rmx-type="text">Lead and opportunity management</li><li rmx-name="text" rmx-type="text">AI-powered sales insights</li><li rmx-name="text" rmx-type="text">Pipeline management</li><li rmx-name="text" rmx-type="text">Sales forecasting</li><li rmx-name="text" rmx-type="text">Revenue intelligence</li><li rmx-name="text" rmx-type="text">Partner relationship management</li></ul>
+                        <div class="best-for">
+                            <strong>Best for:</strong>
+                            <span rmx-name="best_for" rmx-type="text">Sales teams looking to close more deals faster</span>
+                        </div>
+                    </div><div class="pattern-card">
+                        <div class="pattern-number" rmx-name="number" rmx-type="text">2</div>
+                        <h3 rmx-name="title" rmx-type="text">Service Cloud</h3>
+                        <p rmx-name="description" rmx-type="text">Deliver personalized service at scale. Resolve cases faster with AI-powered tools.</p>
+                        <ul class="pattern-features" rmx-name="features" rmx-type="list">
+                            
+                            
+                            
+                        <li rmx-name="text" rmx-type="text">Omni-channel case management</li><li rmx-name="text" rmx-type="text">AI-powered chatbots</li></ul>
+                        <div class="best-for">
+                            <strong>Best for:</strong>
+                            <span rmx-name="best_for" rmx-type="text">Support teams delivering exceptional customer service</span>
+                        </div>
+                    </div><div class="pattern-card">
+                        <div class="pattern-number" rmx-name="number" rmx-type="text">3</div>
+                        <h3 rmx-name="title" rmx-type="text">Marketing Cloud</h3>
+                        <p rmx-name="description" rmx-type="text">Create personalized journeys across every touchpoint. Drive engagement with data-driven marketing.</p>
+                        <ul class="pattern-features" rmx-name="features" rmx-type="list">
+                            
+                            
+                            
+                        <li rmx-name="text" rmx-type="text">Email and journey builder</li><li rmx-name="text" rmx-type="text">Social media management</li><li rmx-name="text" rmx-type="text">Advertising studio</li><li rmx-name="text" rmx-type="text">Analytics and personalization</li><li rmx-name="text" rmx-type="text">Customer data platform</li></ul>
+                        <div class="best-for">
+                            <strong>Best for:</strong>
+                            <span rmx-name="best_for" rmx-type="text">Marketers creating personalized customer journeys</span>
+                        </div>
+                    </div><div class="pattern-card">
+                        <div class="pattern-number" rmx-name="number" rmx-type="text">4</div>
+                        <h3 rmx-name="title" rmx-type="text">Data Cloud</h3>
+                        <p rmx-name="description" rmx-type="text">Unify all your customer data in real-time. Power AI and automation with a single source of truth.</p>
+                        <ul class="pattern-features" rmx-name="features" rmx-type="list">
+                            
+                            
+                            
+                        <li rmx-name="text" rmx-type="text">Real-time data ingestion</li><li rmx-name="text" rmx-type="text">Identity resolution</li><li rmx-name="text" rmx-type="text">Calculated insights</li></ul>
+                        <div class="best-for">
+                            <strong>Best for:</strong>
+                            <span rmx-name="best_for" rmx-type="text">Data teams building unified customer profiles</span>
+                        </div>
+                    </div></div>
+            </div>
+        </section>
+
+        <!-- Customer Logos Carousel -->
+        <section class="customers-section" style="padding: 4rem 2rem; background: var(--surface)">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 2rem" rmx-name="customers_title" rmx-type="text">Trusted by 150,000+ Companies Worldwide</h2>
+                <image-carousel data-rmx="customer_logos" speed="4000" autoplay="true">
+                    
+                    
+                    
+                    
+                    
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" alt="Coca-Cola"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Toyota.svg" alt="Toyota"><img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" alt="Adidas"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"><img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg" alt="Spotify"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Slack_Technologies_Logo.svg" alt="Slack"></image-carousel>
+            </div>
+        </section>
+
+        <!-- Experiences Section -->
+        <section class="experiences-section" id="experiences">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge" rmx-name="experiences_badge" rmx-type="text">Product Suite</div>
+                    <h2 rmx-name="experiences_title" rmx-type="text">The Full Salesforce Platform</h2>
+                    <p rmx-name="experiences_description" rmx-type="text">Every app you need to deliver customer success, powered by AI.</p>
+                </div>
+                <div class="experiences-grid" rmx-name="experiences" rmx-type="list">
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                <div class="experience-card">
+                        <span class="experience-icon" rmx-name="icon" rmx-type="text">💼</span>
+                        <h3 rmx-name="title" rmx-type="text">Sales Cloud</h3>
+                        <p rmx-name="description" rmx-type="text">Close more deals with intelligent sales automation and AI insights.</p>
+                    </div><div class="experience-card">
+                        <span class="experience-icon" rmx-name="icon" rmx-type="text">🎧</span>
+                        <h3 rmx-name="title" rmx-type="text">Service Cloud</h3>
+                        <p rmx-name="description" rmx-type="text">Deliver personalized support across every channel, powered by AI.</p>
+                    </div><div class="experience-card">
+                        <span class="experience-icon" rmx-name="icon" rmx-type="text">📧</span>
+                        <h3 rmx-name="title" rmx-type="text">Marketing Cloud</h3>
+                        <p rmx-name="description" rmx-type="text">Create personalized marketing at scale with unified customer data.</p>
+                    </div><div class="experience-card">
+                        <span class="experience-icon" rmx-name="icon" rmx-type="text">🛒</span>
+                        <h3 rmx-name="title" rmx-type="text">Commerce Cloud</h3>
+                        <p rmx-name="description" rmx-type="text">Unified commerce experiences across B2B and B2C.</p>
+                    </div><div class="experience-card">
+                        <span class="experience-icon" rmx-name="icon" rmx-type="text">🤖</span>
+                        <h3 rmx-name="title" rmx-type="text">Einstein AI</h3>
+                        <p rmx-name="description" rmx-type="text">AI that works across every Salesforce cloud and workflow.</p>
+                    </div><div class="experience-card">
+                        <span class="experience-icon" rmx-name="icon" rmx-type="text">📊</span>
+                        <h3 rmx-name="title" rmx-type="text">Tableau</h3>
+                        <p rmx-name="description" rmx-type="text">Visual analytics and business intelligence for everyone.</p>
+                    </div><div class="experience-card">
+                        <span class="experience-icon" rmx-name="icon" rmx-type="text">🔗</span>
+                        <h3 rmx-name="title" rmx-type="text">MuleSoft</h3>
+                        <p rmx-name="description" rmx-type="text">Connect any app, data, or device with API-led integration.</p>
+                    </div><div class="experience-card">
+                        <span class="experience-icon" rmx-name="icon" rmx-type="text">💬</span>
+                        <h3 rmx-name="title" rmx-type="text">Slack</h3>
+                        <p rmx-name="description" rmx-type="text">Bring teams together with the AI-powered work OS.</p>
+                    </div><div class="experience-card">
+                        <span class="experience-icon" rmx-name="icon" rmx-type="text">⚙️</span>
+                        <h3 rmx-name="title" rmx-type="text">Platform</h3>
+                        <p rmx-name="description" rmx-type="text">Build and extend apps with low-code tools and pro-code options.</p>
+                    </div></div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="contact">
+            <div class="container">
+                <h2 rmx-name="cta_title" rmx-type="text">Start Your Free Trial Today</h2>
+                <p rmx-name="cta_description" rmx-type="text">Join 150,000+ companies growing with Salesforce. No credit card required.</p>
+                <div class="cta-buttons">
+                    <a rmx-name="cta_primary_link" rmx-type="attr:href" href="https://salesforce.com/trial" class="button-primary">
+                        <span rmx-name="cta_primary_text" rmx-type="text">Try for Free</span>
+                    </a>
+                    <a rmx-name="cta_secondary_link" rmx-type="attr:href" href="https://salesforce.com/contact" class="button-secondary">
+                        <span rmx-name="cta_secondary_text" rmx-type="text">Contact Sales</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 rmx-name="footer_brand_name" rmx-type="text">Salesforce</h3>
+                    <p rmx-name="footer_brand_description" rmx-type="text">Salesforce brings companies and customers together. It's one integrated CRM platform that gives all your teams a single, shared view of every customer.</p>
+                </div>
+                <div class="footer-links" rmx-name="footer_links_platform" rmx-type="list">
+                    
+                <ul>
+                        <li>
+                            <a rmx-name="text" rmx-type="text" href="#">Sales Cloud</a>
+                        </li>
+                    </ul><ul>
+                        <li>
+                            <a rmx-name="text" rmx-type="text" href="#">Service Cloud</a>
+                        </li>
+                    </ul><ul>
+                        <li>
+                            <a rmx-name="text" rmx-type="text" href="#">Marketing Cloud</a>
+                        </li>
+                    </ul><ul>
+                        <li>
+                            <a rmx-name="text" rmx-type="text" href="#">Commerce Cloud</a>
+                        </li>
+                    </ul></div>
+            </div>
+            <div class="footer-bottom">
+                <p rmx-name="footer_copyright" rmx-type="text">© 2025 Salesforce, Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    
+
+</body></html>

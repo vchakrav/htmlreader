@@ -1,0 +1,24 @@
+{
+  "patterns": [
+    {
+      "number": "1",
+      "title": "First Pattern",
+      "description": "This is the first pattern with two features.",
+      "features": [
+        {"text": "Feature A"},
+        {"text": "Feature B"}
+      ]
+    },
+    {
+      "number": "2",
+      "title": "Second Pattern",
+      "description": "This is the second pattern with four features.",
+      "features": [
+        {"text": "Feature X"},
+        {"text": "Feature Y"},
+        {"text": "Feature Z"},
+        {"text": "Feature W"}
+      ]
+    }
+  ]
+}

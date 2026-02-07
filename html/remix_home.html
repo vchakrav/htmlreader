@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Remix Labs - Digital Experience Platform for the Modern Data Stack
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                /* Remix brand colors - teal/cyan gradient inspired by your logo */
+                --primary: #00d4aa;
+                --primary-dark: #00a88a;
+                --primary-light: #5fedd8;
+                --accent: #4b9bff;
+                --accent-dark: #2e7fdb;
+
+                /* Neutrals */
+                --background: #fafbfc;
+                --surface: #ffffff;
+                --text-primary: #1a1d23;
+                --text-secondary: #5a6069;
+                --border: #e4e7eb;
+                --shadow: rgba(26, 29, 35, 0.08);
+
+                /* Gradients */
+                --gradient-primary: linear-gradient(
+                    135deg,
+                    #00d4aa 0%,
+                    #4b9bff 100%
+                );
+                --gradient-accent: linear-gradient(
+                    135deg,
+                    #5fedd8 0%,
+                    #4b9bff 100%
+                );
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    sans-serif;
+                background: var(--background);
+                color: var(--text-primary);
+                line-height: 1.6;
+                overflow-x: hidden;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4 {
+                font-weight: 600;
+                letter-spacing: -0.02em;
+            }
+
+            /* Navigation */
+            nav {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--border);
+                z-index: 1000;
+                padding: 1rem 0;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            }
+
+            nav .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .logo-mark {
+                width: 36px;
+                height: 36px;
+                background: var(--gradient-primary);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: 700;
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                list-style: none;
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+            }
+
+            nav a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.95rem;
+                font-weight: 500;
+                transition: color 0.2s ease;
+            }
+
+            nav a:hover {
+                color: var(--primary);
+            }
+
+            .nav-cta {
+                padding: 0.6rem 1.25rem;
+                background: var(--gradient-primary);
+                color: white !important;
+                border-radius: 8px;
+                font-weight: 600;
+                transition: all 0.2s ease;
+                box-shadow: 0 2px 8px rgba(0, 212, 170, 0.2);
+            }
+
+            .nav-cta:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3);
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 10rem 2rem 6rem;
+                background: linear-gradient(
+                    180deg,
+                    var(--surface) 0%,
+                    var(--background) 100%
+                );
+                position: relative;
+                overflow: hidden;
+            }
+
+            /* Subtle animated gradient background */
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: -50%;
+                right: -20%;
+                width: 80%;
+                height: 150%;
+                background: radial-gradient(
+                    circle at center,
+                    rgba(0, 212, 170, 0.08) 0%,
+                    transparent 60%
+                );
+                animation: float 20s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translate(0, 0) rotate(0deg);
+                }
+                33% {
+                    transform: translate(30px, -30px) rotate(5deg);
+                }
+                66% {
+                    transform: translate(-20px, 20px) rotate(-5deg);
+                }
+            }
+
+            .hero .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 2rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero-content {
+                max-width: 800px;
+            }
+
+            .hero h1 {
+                font-size: 4.5rem;
+                line-height: 1.1;
+                margin-bottom: 1.5rem;
+                letter-spacing: -0.03em;
+            }
+
+            .hero h1 .gradient-text {
+                background: var(--gradient-primary);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .hero .lead {
+                font-size: 1.5rem;
+                line-height: 1.5;
+                color: var(--text-secondary);
+                margin-bottom: 2.5rem;
+                max-width: 700px;
+            }
+
+            .hero-buttons {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .button-primary,
+            .button-secondary {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                font-weight: 600;
+                border-radius: 10px;
+                text-decoration: none;
+                transition: all 0.2s ease;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .button-primary {
+                background: var(--gradient-primary);
+                color: white;
+                border: none;
+                box-shadow: 0 4px 12px rgba(0, 212, 170, 0.25);
+            }
+
+            .button-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(0, 212, 170, 0.35);
+            }
+
+            .button-secondary {
+                background: transparent;
+                color: var(--text-primary);
+                border: 2px solid var(--border);
+            }
+
+            .button-secondary:hover {
+                border-color: var(--primary);
+                color: var(--primary);
+                transform: translateY(-2px);
+            }
+
+            /* Architecture Section */
+            .architecture-section {
+                padding: 6rem 2rem;
+                background: var(--surface);
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+
+            .section-badge {
+                display: inline-block;
+                padding: 0.5rem 1rem;
+                background: linear-gradient(
+                    135deg,
+                    rgba(0, 212, 170, 0.1) 0%,
+                    rgba(75, 155, 255, 0.1) 100%
+                );
+                border-radius: 50px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: var(--primary);
+                margin-bottom: 1rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+            .section-header h2 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-header p {
+                font-size: 1.25rem;
+                color: var(--text-secondary);
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            .architecture-diagram {
+                max-width: 1200px;
+                margin: 0 auto;
+                background: var(--background);
+                border-radius: 20px;
+                padding: 3rem;
+                position: relative;
+                border: 1px solid var(--border);
+            }
+
+            .arch-layer {
+                background: var(--surface);
+                border: 2px solid var(--border);
+                border-radius: 16px;
+                padding: 2rem;
+                margin-bottom: 1.5rem;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .arch-layer:hover {
+                border-color: var(--primary);
+                transform: translateX(10px);
+                box-shadow: 0 8px 24px var(--shadow);
+            }
+
+            .arch-layer-header {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .arch-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                flex-shrink: 0;
+            }
+
+            .arch-icon.delivery {
+                background: linear-gradient(135deg, #00d4aa 0%, #5fedd8 100%);
+            }
+
+            .arch-icon.intelligence {
+                background: linear-gradient(135deg, #4b9bff 0%, #2e7fdb 100%);
+            }
+
+            .arch-icon.data {
+                background: linear-gradient(135deg, #9b51e0 0%, #7b2cbf 100%);
+            }
+
+            .arch-layer h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .arch-layer p {
+                color: var(--text-secondary);
+                margin-bottom: 1rem;
+            }
+
+            .arch-tags {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            .tag {
+                padding: 0.4rem 0.9rem;
+                background: var(--background);
+                border-radius: 6px;
+                font-size: 0.8rem;
+                font-weight: 500;
+                color: var(--text-secondary);
+                border: 1px solid var(--border);
+            }
+
+            /* Deployment Patterns Section */
+            .patterns-section {
+                padding: 6rem 2rem;
+                background: var(--background);
+            }
+
+            .patterns-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .pattern-card {
+                background: var(--surface);
+                border: 2px solid var(--border);
+                border-radius: 16px;
+                padding: 2.5rem;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .pattern-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: var(--gradient-primary);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .pattern-card:hover::before {
+                opacity: 1;
+            }
+
+            .pattern-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-6px);
+                box-shadow: 0 12px 36px var(--shadow);
+            }
+
+            .pattern-number {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background: var(--gradient-primary);
+                color: white;
+                border-radius: 50%;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                font-size: 1.1rem;
+            }
+
+            .pattern-card h3 {
+                font-size: 1.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .pattern-card p {
+                color: var(--text-secondary);
+                margin-bottom: 1.5rem;
+                line-height: 1.7;
+            }
+
+            .pattern-features {
+                list-style: none;
+                margin-bottom: 1.5rem;
+            }
+
+            .pattern-features li {
+                padding: 0.5rem 0;
+                color: var(--text-secondary);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .pattern-features li::before {
+                content: "✓";
+                color: var(--primary);
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+
+            .best-for {
+                padding: 1rem;
+                background: linear-gradient(
+                    135deg,
+                    rgba(0, 212, 170, 0.05) 0%,
+                    rgba(75, 155, 255, 0.05) 100%
+                );
+                border-radius: 8px;
+                border-left: 3px solid var(--primary);
+            }
+
+            .best-for strong {
+                color: var(--primary-dark);
+                display: block;
+                margin-bottom: 0.25rem;
+            }
+
+            /* Experiences Section */
+            .experiences-section {
+                padding: 6rem 2rem;
+                background: var(--surface);
+            }
+
+            .experiences-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .experience-card {
+                background: var(--background);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 2rem;
+                transition: all 0.3s ease;
+            }
+
+            .experience-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px var(--shadow);
+                background: var(--surface);
+            }
+
+            .experience-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                display: block;
+            }
+
+            .experience-card h3 {
+                font-size: 1.25rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .experience-card p {
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            /* Snowflake Section */
+            .snowflake-section {
+                padding: 6rem 2rem;
+                background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+                position: relative;
+            }
+
+            .snowflake-content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .snowflake-visual {
+                text-align: center;
+            }
+
+            .sf-logo {
+                width: 200px;
+                height: 200px;
+                background: linear-gradient(135deg, #29b5e8 0%, #1e88e5 100%);
+                margin: 0 auto 2rem;
+                border-radius: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 5rem;
+                box-shadow: 0 20px 60px rgba(41, 181, 232, 0.25);
+            }
+
+            .partner-badge {
+                display: inline-block;
+                padding: 0.75rem 1.5rem;
+                background: white;
+                border: 2px solid #29b5e8;
+                border-radius: 50px;
+                font-weight: 600;
+                color: #1e88e5;
+                box-shadow: 0 4px 12px rgba(41, 181, 232, 0.15);
+            }
+
+            .snowflake-info h3 {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .snowflake-info p {
+                font-size: 1.1rem;
+                color: var(--text-secondary);
+                margin-bottom: 1.5rem;
+                line-height: 1.7;
+            }
+
+            .deployment-options {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .deploy-option {
+                padding: 1.5rem;
+                background: white;
+                border: 2px solid rgba(41, 181, 232, 0.2);
+                border-radius: 12px;
+                transition: all 0.2s ease;
+            }
+
+            .deploy-option:hover {
+                border-color: #29b5e8;
+                box-shadow: 0 4px 12px rgba(41, 181, 232, 0.15);
+            }
+
+            .deploy-option h4 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .deploy-option p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .option-tag {
+                display: inline-block;
+                padding: 0.25rem 0.75rem;
+                background: rgba(41, 181, 232, 0.1);
+                border-radius: 4px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                color: #1e88e5;
+                margin-right: 0.5rem;
+            }
+
+            /* CTA Section */
+            .cta-section {
+                padding: 6rem 2rem;
+                background: linear-gradient(
+                    135deg,
+                    var(--text-primary) 0%,
+                    #2a2d35 100%
+                );
+                color: white;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .cta-section::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--gradient-accent);
+                opacity: 0.1;
+                mix-blend-mode: overlay;
+            }
+
+            .cta-section .container {
+                position: relative;
+                z-index: 1;
+            }
+
+            .cta-section h2 {
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .cta-section p {
+                font-size: 1.25rem;
+                margin-bottom: 2.5rem;
+                opacity: 0.9;
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .cta-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .cta-buttons .button-primary {
+                background: white;
+                color: var(--text-primary);
+                box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+            }
+
+            .cta-buttons .button-primary:hover {
+                background: var(--background);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+            }
+
+            .cta-buttons .button-secondary {
+                border-color: white;
+                color: white;
+            }
+
+            .cta-buttons .button-secondary:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            /* Footer */
+            footer {
+                background: var(--text-primary);
+                color: white;
+                padding: 4rem 2rem 2rem;
+            }
+
+            .footer-content {
+                max-width: 1400px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+                gap: 3rem;
+                margin-bottom: 3rem;
+            }
+
+            .footer-brand h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .footer-brand p {
+                opacity: 0.8;
+                line-height: 1.7;
+            }
+
+            .footer-links h4 {
+                margin-bottom: 1rem;
+                font-size: 1rem;
+            }
+
+            .footer-links ul {
+                list-style: none;
+            }
+
+            .footer-links li {
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-links a {
+                color: white;
+                opacity: 0.7;
+                text-decoration: none;
+                transition: opacity 0.2s ease;
+            }
+
+            .footer-links a:hover {
+                opacity: 1;
+            }
+
+            .footer-bottom {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding-top: 2rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                text-align: center;
+                opacity: 0.7;
+            }
+
+            /* Responsive */
+            @media (max-width: 1024px) {
+                .hero h1 {
+                    font-size: 3.5rem;
+                }
+
+                .patterns-grid,
+                .snowflake-content {
+                    grid-template-columns: 1fr;
+                }
+
+                .experiences-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .footer-content {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+
+            @media (max-width: 768px) {
+                nav ul {
+                    display: none;
+                }
+
+                .hero {
+                    padding: 8rem 2rem 4rem;
+                }
+
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+
+                .hero .lead {
+                    font-size: 1.25rem;
+                }
+
+                .section-header h2 {
+                    font-size: 2rem;
+                }
+
+                .experiences-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .deployment-options {
+                    grid-template-columns: 1fr;
+                }
+
+                .footer-content {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav>
+            <div class="container">
+                <a href="/" class="logo">
+                    <div class="logo-mark">R</div>
+                    Remix Labs
+                </a>
+                <ul>
+                    <li><a href="#platform">Platform</a></li>
+                    <li><a href="#experiences">Experiences</a></li>
+                    <li><a href="#snowflake">Snowflake</a></li>
+                    <li><a href="#customers">Customers</a></li>
+                    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>
+                        Digital Experience Platform<br />
+                        for the
+                        <span class="gradient-text">Modern Data Stack</span>
+                    </h1>
+                    <p class="lead">
+                        Build and deploy AI-enabled app-experiences, embeddable
+                        anywhere. Leverage your data lake for unified context.
+                        Native Snowflake integration when you need it.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#platform" class="button-primary">
+                            Explore Platform
+                            <span>→</span>
+                        </a>
+                        <a href="#demo" class="button-secondary">
+                            Watch Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Section -->
+        <section class="architecture-section" id="platform">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">How It Works</div>
+                    <h2>From Data to Deployed Experiences</h2>
+                    <p>
+                        A complete platform for building and deploying
+                        AI-powered experiences—with data lake integration
+                    </p>
+                </div>
+                <div class="architecture-diagram">
+                    <div class="arch-layer">
+                        <div class="arch-layer-header">
+                            <div class="arch-icon delivery">📱</div>
+                            <div>
+                                <h3>Multi-Modal Delivery</h3>
+                                <p>Deploy once, available everywhere</p>
+                            </div>
+                        </div>
+                        <div class="arch-tags">
+                            <span class="tag">Mobile Native</span>
+                            <span class="tag">Desktop Apps</span>
+                            <span class="tag">Browser Extensions</span>
+                            <span class="tag">Web Portals</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-header">
+                            <div class="arch-icon intelligence">🤖</div>
+                            <div>
+                                <h3>Remix Intelligence Layer</h3>
+                                <p>
+                                    AI-powered composition, agentic workflows,
+                                    service agents
+                                </p>
+                            </div>
+                        </div>
+                        <div class="arch-tags">
+                            <span class="tag">AI Composition</span>
+                            <span class="tag">Workflow Orchestration</span>
+                            <span class="tag">Service Agents</span>
+                            <span class="tag">Event Triggers</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-header">
+                            <div class="arch-icon data">💾</div>
+                            <div>
+                                <h3>Flexible Data Access</h3>
+                                <p>
+                                    Connect to any source, leverage data lakes
+                                    for unified context
+                                </p>
+                            </div>
+                        </div>
+                        <div class="arch-tags">
+                            <span class="tag">Snowflake Native</span>
+                            <span class="tag">OAuth Access</span>
+                            <span class="tag">API Integrations</span>
+                            <span class="tag">SaaS Connectors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deployment Patterns Section -->
+        <section class="patterns-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">Deployment Options</div>
+                    <h2>Three Ways to Deploy Remix</h2>
+                    <p>
+                        Choose your architecture based on your needs—from
+                        standalone apps to data lake-native experiences
+                    </p>
+                </div>
+                <div class="patterns-grid">
+                    <div class="pattern-card">
+                        <div class="pattern-number">1</div>
+                        <h3>Standalone Deployment</h3>
+                        <p>
+                            Build experiences that connect to any data source
+                            via APIs. Perfect for quick wins and getting started
+                            without infrastructure dependencies.
+                        </p>
+                        <ul class="pattern-features">
+                            <li>Connect to any API or data source</li>
+                            <li>Deploy mobile, desktop, browser instantly</li>
+                            <li>No data lake infrastructure required</li>
+                            <li>Perfect for personal productivity</li>
+                        </ul>
+                        <div class="best-for">
+                            <strong>Best for:</strong>
+                            Quick proof of value, testing use cases, personal
+                            apps
+                        </div>
+                    </div>
+
+                    <div class="pattern-card">
+                        <div class="pattern-number">2</div>
+                        <h3>Data Lake-Native (Snowpark)</h3>
+                        <p>
+                            Run applications entirely inside Snowflake using
+                            Snowpark Container Services. Zero data movement,
+                            maximum security and performance.
+                        </p>
+                        <ul class="pattern-features">
+                            <li>Native Snowpark Container deployment</li>
+                            <li>Zero data egress, full governance</li>
+                            <li>Heavy analytics and compute workloads</li>
+                            <li>Available in Snowflake Marketplace</li>
+                        </ul>
+                        <div class="best-for">
+                            <strong>Best for:</strong>
+                            Compliance-critical apps, analytics at scale,
+                            enterprise workloads
+                        </div>
+                    </div>
+
+                    <div class="pattern-card">
+                        <div class="pattern-number">3</div>
+                        <h3>Augmented with Data Lake Context</h3>
+                        <p>
+                            External experiences enriched with unified context
+                            from your data lake. Best user experience combined
+                            with complete business data.
+                        </p>
+                        <ul class="pattern-features">
+                            <li>OAuth access to Snowflake for context</li>
+                            <li>Enhance existing tools (Zendesk, HubSpot)</li>
+                            <li>Mobile widgets with unified data</li>
+                            <li>Build from phone in 60 seconds</li>
+                        </ul>
+                        <div class="best-for">
+                            <strong>Best for:</strong>
+                            Augmenting existing tools, mobile-first experiences,
+                            customer 360
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experiences Section -->
+        <section class="experiences-section" id="experiences">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">What You Can Build</div>
+                    <h2>Experiences Across All Deployment Patterns</h2>
+                    <p>
+                        From mobile widgets to enterprise workflows—build once,
+                        deploy everywhere
+                    </p>
+                </div>
+                <div class="experiences-grid">
+                    <div class="experience-card">
+                        <span class="experience-icon">📱</span>
+                        <h3>Widgets in Mobile</h3>
+                        <p>
+                            Real-time widgets on mobile devices. Build from your
+                            phone using OAuth to Snowflake or any data source.
+                        </p>
+                    </div>
+
+                    <div class="experience-card">
+                        <span class="experience-icon">📊</span>
+                        <h3>Analytics Reports (Retauve)</h3>
+                        <p>
+                            Pre-built analytics and reporting solutions.
+                            Interactive dashboards with real-time data.
+                        </p>
+                    </div>
+
+                    <div class="experience-card">
+                        <span class="experience-icon">📋</span>
+                        <h3>Tabular Reports (Custom)</h3>
+                        <p>
+                            Custom tabular reports from your data lake. Query
+                            Snowflake or run natively in Snowpark.
+                        </p>
+                    </div>
+
+                    <div class="experience-card">
+                        <span class="experience-icon">🔍</span>
+                        <h3>Document Search/Query + Embeddings</h3>
+                        <p>
+                            Semantic search with UMAP embeddings. Natural
+                            language document queries with full context.
+                        </p>
+                    </div>
+
+                    <div class="experience-card">
+                        <span class="experience-icon">🔄</span>
+                        <h3>Sync for Zendesk, HubSpot, Salesforce</h3>
+                        <p>
+                            Bi-directional sync to Snowflake. Unified customer
+                            data with widgets and Customer 360.
+                        </p>
+                    </div>
+
+                    <div class="experience-card">
+                        <span class="experience-icon">🗺️</span>
+                        <h3>UMAP</h3>
+                        <p>
+                            Dimensionality reduction and visualization. Explore
+                            high-dimensional data from your data lake.
+                        </p>
+                    </div>
+
+                    <div class="experience-card">
+                        <span class="experience-icon">⚡</span>
+                        <h3>Event Synch: L2C</h3>
+                        <p>
+                            Lead-to-cash orchestration with AI as program
+                            manager. Event-triggered workflows across systems.
+                        </p>
+                    </div>
+
+                    <div class="experience-card">
+                        <span class="experience-icon">✨</span>
+                        <h3>Personalized Digital Exp</h3>
+                        <p>
+                            Custom landing pages and personalized experiences.
+                            High-quality apps for internal and external
+                            audiences.
+                        </p>
+                    </div>
+
+                    <div class="experience-card">
+                        <span class="experience-icon">🎨</span>
+                        <h3>Landing Pages</h3>
+                        <p>
+                            Build and deploy custom landing pages. AI-powered
+                            composition for rapid deployment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Snowflake Section -->
+        <section class="snowflake-section" id="snowflake">
+            <div class="container">
+                <div class="snowflake-content">
+                    <div class="snowflake-visual">
+                        <div class="sf-logo">❄️</div>
+                        <div class="partner-badge">
+                            Part of Snowflake Startup Accelerator
+                        </div>
+                    </div>
+                    <div class="snowflake-info">
+                        <h3>Deep Integration With Snowflake</h3>
+                        <p>
+                            As part of Snowflake's Startup Accelerator, we
+                            support all deployment patterns with Snowflake—from
+                            OAuth access for quick widgets to native Snowpark
+                            containers for enterprise workloads.
+                        </p>
+                        <div class="deployment-options">
+                            <div class="deploy-option">
+                                <h4>⚡ OAuth Access</h4>
+                                <p>
+                                    Query Snowflake directly from mobile,
+                                    desktop, or browser. Build widgets in 60
+                                    seconds.
+                                </p>
+                                <span class="option-tag">Fast Start</span>
+                                <span class="option-tag"
+                                    >No Infrastructure</span
+                                >
+                            </div>
+                            <div class="deploy-option">
+                                <h4>🏔️ Snowpark Native</h4>
+                                <p>
+                                    Run applications inside Snowflake. Zero data
+                                    movement, full governance and compliance.
+                                </p>
+                                <span class="option-tag">Enterprise</span>
+                                <span class="option-tag">Marketplace</span>
+                            </div>
+                        </div>
+                        <p style="margin-top: 2rem; font-weight: 600">
+                            Expanding to Databricks, BigQuery, and all modern
+                            data platforms
+                        </p>
+                        <div class="hero-buttons" style="margin-top: 2rem">
+                            <a href="#" class="button-primary"
+                                >View Marketplace Listings</a
+                            >
+                            <a href="#" class="button-secondary"
+                                >Download Mobile App</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="contact">
+            <div class="container">
+                <h2>Ready to Build Your Next Experience?</h2>
+                <p>
+                    Join companies deploying intelligent experiences with
+                    Remix—from quick mobile widgets to enterprise-scale data
+                    lake applications.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" class="button-primary">Get Started Free</a>
+                    <a href="#" class="button-secondary">Schedule Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Remix Labs</h3>
+                    <p>
+                        Digital Experience Platform for the Modern Data Stack.
+                        Deploy experiences anywhere, leverage your data lake for
+                        unified context.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#platform">Overview</a></li>
+                        <li><a href="#experiences">Experiences</a></li>
+                        <li><a href="#snowflake">Snowflake</a></li>
+                        <li><a href="#">Architecture</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#customers">Customers</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Guides</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    &copy; 2025 Remix Labs. All Rights Reserved. |
+                    <a href="#" style="color: inherit">Privacy Policy</a> |
+                    <a href="#" style="color: inherit">Terms of Service</a>
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>
